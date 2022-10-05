@@ -23,7 +23,7 @@ crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
 
 which.min.general = function(vector) {
   minimo = min(vector);
-  res = which(vector == minimo); #el comando which dice cuál es la posición del mínimo en el vector y si hay empate muestra todas las que hay, no sólo el primero.
+  res = which(vector == minimo); #el comando which dice cuál es la posición del mínimo en el vector y si hay empate muestra todas las que hay, no sólo el primero
   return(res);
 
 }
