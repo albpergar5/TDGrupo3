@@ -30,7 +30,7 @@ which.min.general = function(vector) {
 
 which.max.general = function(vector) {
   maximo = max(vector);
-  res = which(vector == maximo);
+  res = which(vector == maximo); ##which devuelve la posicion del maximo vector
   return(res);
 
 }
