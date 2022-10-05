@@ -41,6 +41,11 @@ which.max.general = function(vector) {
 
 distanciaEuclidea = function(pto1,pto2) {
   return( sqrt( sum( (pto1-pto2)^2 )  ) )
+  # dados dos vectores (o puntos en R^n) primero hace la resta 
+  # componente a componente, después el cuadrado de las diferencias,
+  # hace la suma de esto, quedando entonces la suma de diferencias
+  # al cuadrado. Por último lo que devuelve es la raíz cuadrada
+  # de esto, que es la definición de la distancia Euclídea entre dos puntos
 }
 
 
