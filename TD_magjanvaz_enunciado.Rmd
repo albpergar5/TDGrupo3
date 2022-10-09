@@ -1,0 +1,61 @@
+---
+title: "TD_magjanvaz_enunciado"
+output:
+  pdf_document: default
+  html_document: default
+date: "2022-10-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list=ls())
+source("teoriadecision_funciones_incertidumbre.R")
+```
+
+# Enunciado
+
+Una pareja está organizando el cumpleaños de su hijo de 7 años Ha invitado a 10 compañeros de clase, pero solo 6 de ellos han confirmado que irán, y 1 de ellos avisó de que no podrá. De modo que en la fiesta, contando al cumpleañero, habrá entre 7 y 10 niños, pero no pueden saber cuántos irán. Las opciones que tienen para celebrarlo son: alquilar un castillo hinchable para poner en su jardín, que cuesta 70€ y tiene capacidad para todos los niños al mismo tiempo, y preparar ellos la merienda, que costaría 5€ por cada niño, además de la tarta que son 15€. Otra opción que se plantean es llevarlos a una piscina de bolas, que cuesta 15€ por niño, e incluye la merienda y el entretenimiento.
+
+# Esquema
+
+El problema presenta un modelo de costes (desfavorable)
+
+
+Hay dos posibles elecciones: \newline
+  -Castillo hinchable \newline
+  -Piscina de bolas \newline 
+
+
+Hay cinco posibles estados de la naturaleza: \newline
+  -Hay 6 niños en el cumpleaños \newline
+  -Hay 7 niños en el cumpleaños \newline
+  -Hay 8 niños en el cumpleaños \newline
+  -Hay 9 niños en el cumpleaños \newline
+  -Hay 10 niños en el cumpleaños \newline
+
+# Resolución
+
+Veamos los costes que presenta cada tipo de fiesta según la cantidad de niños que acudan. Lo calculamos de forma vectorial para mayor facilidad y optimizar el script.
+
+```{r}
+castillo = 6:10*5+70+15; castillo
+piscina = 6:10*15; piscina
+```
+
+Ahora con ambos vectores construimos la matriz para nuestro problema, y lo evaluamos según todos los métodos que conocemos.
+
+```{r}
+
+tabla = crea.tablaX(c(castillo, piscina),
+                   numalternativas = 2,
+                   numestados = 5)
+
+resultado=criterio.Todos(tabla,0.5,F)
+
+knitr::kable(resultado)
+```
+
+Como podemos ver, si el único criterio para elegir el plan del cumpleaños es minimizar el coste la mejor opción es la piscina de bolas, salvo que los padres opten por la estrategia "pesimista" en la cuál se plantean que el número máximo de amigos de su hijo acudirían al cumpleaños y en cuyo caso la opción más rentable sería el castillo hinchable.
