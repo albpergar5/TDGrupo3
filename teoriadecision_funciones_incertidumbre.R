@@ -455,27 +455,38 @@ criterio.Savage = function(tablaX,favorable=TRUE) {
 
 
 criterio.Laplace = function(tablaX,favorable=TRUE) {
-
+  # hay que introducir la tabla en un formato válido (con crea.tablaX)
   X = tablaX;
   if (favorable) {
     AltL = apply(X,MARGIN=1,mean);
+    # hace la media de nuestra tabla por filas (por cada decisión, beneficio medio)
     Laplace = max(AltL) # favorable
+    # como es el beneficio medio, queremos maximizarlo, lo guardamos en una variable
     Alt_Laplace = which.max.general(AltL)
+    # vemos en qué posiciones se alcanza el máximo con la función auxiliar conveniente
     metodo = 'favorable';
   } else {
     AltL = apply(X,MARGIN=1,mean);
+    # si el método no es favorable, hace también la media pero esta vez es del coste 
     Laplace = min(AltL) # desfavorable
+    # queremos la elección que minimice el coste medio, almacenamos este valor
     Alt_Laplace = which.min.general(AltL)
     metodo = 'desfavorable';
+    # de nuevo vemos dónde se alcanza dicho mínimo. Almacena también el método con el que estamos
   }
   resultados = list();
+  # creamos una lista que será lo que devuelva nuestra función, en ella almacenamos
+  # el nombre del criterio y el método (favorable o desfavorable), así como la tabla
+  # con la que estamos trabajando y los valores de las medias por filas
   resultados$criterio = 'Laplace';
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
   resultados$ValorAlternativas = AltL;
   resultados$ValorOptimo = Laplace;
+  # aquí guardamos el valor óptimo, según el método será el máximo o mínimo de las medias
+  
   resultados$AlternativaOptima = Alt_Laplace;
-
+  # por último indicamos cuál o cuáles son las decisiones óptimas, y devolvemos la lista entera
   return(resultados);
 
 }
