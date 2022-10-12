@@ -17,7 +17,7 @@ source("teoriadecision_funciones_incertidumbre.R")
 
 # Enunciado
 
-Una pareja está organizando el cumpleaños de su hijo de 7 años Ha invitado a 10 compañeros de clase, pero solo 6 de ellos han confirmado que irán, y 1 de ellos avisó de que no podrá. De modo que en la fiesta, contando al cumpleañero, habrá entre 7 y 10 niños, pero no pueden saber cuántos irán. Las opciones que tienen para celebrarlo son: alquilar un castillo hinchable para poner en su jardín, que cuesta 70€ y tiene capacidad para todos los niños al mismo tiempo, y preparar ellos la merienda, que costaría 5€ por cada niño, además de la tarta que son 15€. Otra opción que se plantean es llevarlos a una piscina de bolas, que cuesta 15€ por niño, e incluye la merienda y el entretenimiento.
+Una pareja está organizando el cumpleaños de su hijo de 7 años Ha invitado a 10 compañeros de clase, pero solo 5 de ellos han confirmado que irán, y 1 de ellos avisó de que no podrá. De modo que en la fiesta, contando al cumpleañero, habrá entre 6 y 10 niños, pero no pueden saber cuántos irán. Las opciones que tienen para celebrarlo son: alquilar un castillo hinchable para poner en su jardín, que cuesta 70€ y tiene capacidad para todos los niños al mismo tiempo, y preparar ellos la merienda, que costaría 5€ por cada niño, además de la tarta que son 15€. Otra opción que se plantean es llevarlos a una piscina de bolas, que cuesta 15€ por niño, e incluye la merienda y el entretenimiento.
 
 # Esquema
 
