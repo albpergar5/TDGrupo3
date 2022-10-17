@@ -132,23 +132,43 @@ criterio.Optimista = function(tablaX,favorable=TRUE) {
 
 ## factor de optimismo   (alfab * "lo mejor" Altmax en favor. y Altmin en desf.)
 criterio.Hurwicz = function(tablaX,alfa=0.3,favorable=TRUE) {
-  # alfa es un escalar entre 0 y 1 lo obtiene para ese único valor
+  # alfa es un escalar entre 0 y 1 para el que calcularemos la valoración
   X = tablaX;
   if (favorable) {
+    # calculamos el mínimo y el máximo de cada decisión igual que en los
+    # métodos de Wald y optimista
     Altmin = apply(X,MARGIN=1,min);
     Altmax= apply(X,MARGIN=1,max);
     AltH = alfa * Altmax + (1-alfa) * Altmin
+    # buscamos un equilibrio entre ambos, el alfa nos indica cuánta 
+    # importancia le damos al mejor caso posible de cada decisión
+    # y 1-alfa sería el peso del peor caso posible de la decisión
+    # esta combinación es la que queremos maximizar
     Hurwicz = max(AltH)
     Alt_Hurwicz = which.max.general(AltH)
+    # buscamos aquellas elecciones con el mayor valor posible
+    # de combinación según alfa entre optimista y pesimista 
     metodo = 'favorable';
   } else {
+    # en caso de ser desfavorable, el mejor caso es minimizar pérdidas
+    # de modo que lo que multiplica alfa es el menor valor de la decisión
+    # y 1-alfa el mayor valor de pérdidas de cada decisión (pesimista)
     Altmin = apply(X,MARGIN=1,min);
     Altmax= apply(X,MARGIN=1,max);
     AltH = (1-alfa) * Altmax + alfa * Altmin
+    # una vez obtenemos para cada decisión esa combinación de costes
+    # lo que queremos es minimizarla, y por tanto calculamos el valor
+    # mínimo y vemos en qué decisión o decisiones se alcanza
     Hurwicz = min(AltH)
     Alt_Hurwicz = which.min.general(AltH)
     metodo = 'desfavorable';
   }
+  # con toda la información almacenada hacemos una tabla, en la que se indica
+  # el nombre del método, el alfa que usamos, si era favorable o desfavorable,
+  # la matriz de costes o de beneficios utilizada, el valor que cada decisión
+  # tenía para la combinación de "alfa*optimista + (1-alfa)*pesimista"
+  # el óptimo de dicha combinación según fueran costes o beneficios
+  # y finalmente las decisiones que alcanzaron dicho óptimo
   resultados = list();
   resultados$criterio = 'Hurwicz';
   resultados$alfa = alfa;
@@ -159,7 +179,6 @@ criterio.Hurwicz = function(tablaX,alfa=0.3,favorable=TRUE) {
   resultados$AlternativaOptima = Alt_Hurwicz;
 
   return(resultados);
-
 
 
 }
