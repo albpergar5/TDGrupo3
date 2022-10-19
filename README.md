@@ -12,6 +12,6 @@ Cecilia: Optimista.
 
 Rubén: Savage. 
 
-Magdalena: Laplace. 
+Magdalena: Laplace (hecho). 
 
-Laura: PuntoIdeal. 
+Laura: Punto Ideal. 
