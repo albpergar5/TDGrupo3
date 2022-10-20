@@ -62,7 +62,7 @@ distanciaEuclidea = function(pto1,pto2) {
 # es razonable pensar que si utilizamos esta función sea para puntos en un mismo espacio
 # esto es, con el mismo número de coordenadas. Y si se nos olvida una coma o una de las
 # coordenadas la función sabría detectarlo. Veamos un ejemplo
-
+ 
 # > distanciaEuclidea(c(1,2,3,4),c(3,5,4))
 # [1] 3.872983
 # Warning message:
