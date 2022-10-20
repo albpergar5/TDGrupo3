@@ -81,6 +81,12 @@ distanciaEuclidea = function(pto1,pto2) {
 # vemos que aplica la distancia como si el vector primero fuese c(1,2,1,2)
 # pero esto no es lo que le habíamos pedido a la función
 
+
+# la entrada a esta función debe ser un número, o al menos un único valor
+# para los valores 2 y 3 tiene tablas predefinidas
+# para el resto de valores tiene definida la tabla correspondiente al valor 1
+# en cualquier caso la salida es una tabla creada según la función crea.tablaX
+# definida al inicio de este script
 criterio.tablaX.ejemplos = function(cual=1) {
 
   if (cual==2) { ## cual == 2  ## desfav.
@@ -93,6 +99,23 @@ criterio.tablaX.ejemplos = function(cual=1) {
   return(X);
 
 }
+
+# podemos ver que la función también da tabla 1 como salida para cualquier
+# número distinto de 2 o 3, y también si introducimos una cadena de texto
+
+# > criterio.tablaX.ejemplos("texto")
+# e1 e2 e3
+# d1  5  4  6
+# d2  2  3  1
+# d3 -1  8  7
+# d4  5  2  0
+
+# pero en cambio da un error si introducimos un vector, pues no puede
+# aplicar los condicionales de forma correcta
+
+# > criterio.tablaX.ejemplos(1:3)
+# Error in if (cual == 2) { : the condition has length > 1
+  
 
 ## Funciones Métodos de Decisión bajo Incertidumbre ----
 
