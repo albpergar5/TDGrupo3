@@ -79,7 +79,7 @@ distanciaEuclidea = function(pto1,pto2) {
 # [1] 7.071068
 
 # vemos que aplica la distancia como si el vector primero fuese c(1,2,1,2)
-
+# pero esto no es lo que le habíamos pedido a la función
 
 criterio.tablaX.ejemplos = function(cual=1) {
 
