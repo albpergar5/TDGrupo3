@@ -20,7 +20,9 @@ crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
 # ```
 
 
-
+# la entrada de esta función es un vector
+# el valor de salida es un vector con las posiciones en que se encuentra
+# el menor valor de dicho vector
 which.min.general = function(vector) {
   minimo = min(vector);
   res = which(vector == minimo); #el comando which dice cuál es la posición del mínimo en el vector y si hay empate muestra todas las que hay, no sólo el primero
@@ -28,6 +30,10 @@ which.min.general = function(vector) {
 
 }
 
+
+# la entrada de esta función es un vector
+# el valor de salida es un vector con las posiciones en que se encuentra
+# el mayor valor de dicho vector
 which.max.general = function(vector) {
   maximo = max(vector);
   res = which(vector == maximo); ##which devuelve la posicion del maximo vector
@@ -39,6 +45,9 @@ which.max.general = function(vector) {
 ##which.min.general(c(3,2,8,2,9,2))
 ##which.min.general(c(3,2,8,1,9,2))
 
+# la entrada de esta función son dos vectores, entendidos como coordenadas de dos puntos
+# el valor de salida es calcular la suma de cuadrados de diferencias entre sus coordenadas
+# esto es, la distancia euclídea entendiendolas como puntos de R^n
 distanciaEuclidea = function(pto1,pto2) {
   return( sqrt( sum( (pto1-pto2)^2 )  ) )
   # dados dos vectores (o puntos en R^n) primero hace la resta 
@@ -48,6 +57,28 @@ distanciaEuclidea = function(pto1,pto2) {
   # de esto, que es la definición de la distancia Euclídea entre dos puntos
 }
 
+## Nota Magdalena, posible error en la función por el funcionamiento interno de R
+
+# es razonable pensar que si utilizamos esta función sea para puntos en un mismo espacio
+# esto es, con el mismo número de coordenadas. Y si se nos olvida una coma o una de las
+# coordenadas la función sabría detectarlo. Veamos un ejemplo
+
+# > distanciaEuclidea(c(1,2,3,4),c(3,5,4))
+# [1] 3.872983
+# Warning message:
+#   In pto1 - pto2 :
+#   longer object length is not a multiple of shorter object length
+
+# vemos que calcula la distancia haciendo que el segundo vector sea c(3,5,4,3)
+# y nos da un error
+
+# pero ese error no aparece si se cumple que la longitud de uno de los vectores
+# es múltiplo de la longitud del otro, veamos un ejemplo
+
+# > distanciaEuclidea(c(1,2),c(5,7,4,2))
+# [1] 7.071068
+
+# vemos que aplica la distancia como si el vector primero fuese c(1,2,1,2)
 
 
 criterio.tablaX.ejemplos = function(cual=1) {
