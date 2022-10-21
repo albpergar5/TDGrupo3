@@ -81,6 +81,19 @@ distanciaEuclidea = function(pto1,pto2) {
 # vemos que aplica la distancia como si el vector primero fuese c(1,2,1,2)
 # pero esto no es lo que le habíamos pedido a la función
 
+# versión alternativa de la función
+# aunque para lo que la usamos en este script no tenga influencia porque
+# las tablas siempre trabajan con el mismo número de coordenadas (estados)
+# en cada vector (alternativa) para un uso distinto vendría bien esta versión
+
+distanciaEuclidea2 = function(pto1,pto2) {
+  if(length(pto1)==length(pto2)){
+    return( sqrt( sum( (pto1-pto2)^2 )  ) )
+  }
+  # no hace falta un else porque si se cumple la condición sale del bucle
+  warning("Los vectores introducidos tienen distinto número de coordenadas")
+}
+
 
 # la entrada a esta función debe ser un número, o al menos un único valor
 # para los valores 2 y 3 tiene tablas predefinidas
