@@ -133,23 +133,38 @@ criterio.tablaX.ejemplos = function(cual=1) {
 ## Funciones Métodos de Decisión bajo Incertidumbre ----
 
 ## Criterio de Wald o Pesimista
-criterio.Wald = function(tablaX,favorable=TRUE) {
 
-  X = tablaX;
+ # Para cada alternativa se supone que va a pasar lo peor y elige la alternativa 
+ # que dé mejor valor. Nos aseguramos que en el peor de los casos obtengamos lo mejor 
+ # posible, por tanto es una visión pesimista.
+criterio.Wald = function(tablaX,favorable=TRUE) {
+  # Entrada: tabla de las alternativas con sus datos y método.
+  X = tablaX; #renombramos la tabla
   if (favorable) {
     AltW = apply(X,MARGIN=1,min);
+    # Calcula el mínimo de nuestra tabla por filas, es decir, por alternativa, porque hablamos de ganancias.
     ##AltW
     Wald = max(AltW);
+    # Calcula el máximo de los mínimos calculados. Queremos maximizar la ganancia.
     Alt_Wald = which.max.general(AltW);
+    # Aquí vemos en qué posición se alcanza el máximo a través de which.max.general (explicada anteriormente).
     metodo = 'favorable';
+    # Nos encontramos en el método favorable.
   } else {
     AltW = apply(X,MARGIN=1,max);
+    # Ahora hablamos de costes, luego queremos maximizar lo que tendríamos que pagar por alternativa.
     ##AltW
     Wald = min(AltW);
+    # De este modo, minizamos el coste a pagar.
     Alt_Wald = which.min.general(AltW);
+    # Obtenemos la posición donde se alcanza el mínimo.
     metodo = 'desfavorable';
   }
   resultados = list();
+  # Creamos una lista con el nombre del criterio, el método (si es favorable o no favorable),
+  # la tabla con los datos, el mínimo o máximo por alternativa (dependiendo del método),
+  # el valor óptimo que será el máximo de los mínimos(maxmin) o el mínimo de los máximos(minmax).
+  # Por último, nos muestra las decisiones óptimas.
   resultados$criterio = 'Wald';
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
@@ -158,7 +173,7 @@ criterio.Wald = function(tablaX,favorable=TRUE) {
   resultados$AlternativaOptima = Alt_Wald;
 
   return(resultados);
-
+  # Devuelve la lista.
 
 }
 
