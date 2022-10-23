@@ -556,11 +556,14 @@ criterio.Savage = function(tablaX,favorable=TRUE) {
 
 
 criterio.Laplace = function(tablaX,favorable=TRUE) {
-  # hay que introducir la tabla en un formato válido (con crea.tablaX)
+  # entrada: tabla con los valores de cada decisión y cada estado
+  # método a utilizar: favorable (TRUE) o desfavorable (FALSE)
+  # la tabla debe introducirse en un formato válido (con la función crea.tablaX)
   X = tablaX;
+  # renombramos la tabla para mayor facilidad
   if (favorable) {
     AltL = apply(X,MARGIN=1,mean);
-    # hace la media de nuestra tabla por filas (por cada decisión, beneficio medio)
+    # se hace la media de nuestra tabla por filas (por cada decisión, beneficio medio)
     Laplace = max(AltL) # favorable
     # como es el beneficio medio, queremos maximizarlo, lo guardamos en una variable
     Alt_Laplace = which.max.general(AltL)
