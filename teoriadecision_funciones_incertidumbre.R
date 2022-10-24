@@ -2,12 +2,18 @@
 ## Funciones útiles ----
 
 crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
-
+  # valores de entrada:
+  # matriz de valores de las decisiones según cada estado, se introduce por filas,
+  # esto es, todos los de la primera alternativa, luego los de la segunda, etc.
+  # segundo argumento: número de altenativas; tecer argumento: número de estados
   X = matrix(vector_matporfilas,nrow=numalternativas,ncol=numestados,byrow=TRUE)
+  # una vez hemos creado la matriz correspondiente solo falta poner los nombres
   colnames(X) = paste('e',1:numestados,sep='');
+  # las columnas son los estados del problema. Las filas son las alternativas
+  # por defecto se numeran desde 1, siendo e los estados y d las decisiones (alternaticas)
   rownames(X) = paste('d',1:numalternativas,sep='');
   return(X);
-
+  # valor de salida: matriz con los coeficientes introducidos y los nombres correspondientes
 }
 
 # Introducimos los datos en R en forma de matriz:
