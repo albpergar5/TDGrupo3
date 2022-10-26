@@ -604,31 +604,31 @@ criterio.Laplace = function(tablaX,favorable=TRUE) {
 
 }
 
-
-#Funcion que ...
+#Función que calcula en cada escenario la recompensa máxima posible, es decir, su punto ideal, de ahí el nombre del criterio. 
 criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
-
-  X = tablaX;
+#La función tiene como entrada una matriz (tabla de decisión) con cada desición y sus estados.
+#método: favorable = TRUE, favorable = FALSE cuando es desfavorable.
+  X = tablaX; #Se le pone nombre a la matriz
   if (favorable) {
-    MejoresPT = apply(X,MARGIN=2,max); # favorable
-    AltPT = rep(0,dim(X)[1])
-    for (i in 1:dim(X)[1]) {
-      AltPT[i] = distanciaEuclidea(MejoresPT,X[i,])
+    MejoresPT = apply(X,MARGIN=2,max); #Calcula el máximo (favorable) por columnas (MARGIN = 2), es decir, por estados y lo guarda en MejoresPT 
+    AltPT = rep(0,dim(X)[1]) #creamos vector para cada alternativa (por filas)
+    for (i in 1:dim(X)[1]) { #iteramos la función el número de alternativas 
+      AltPT[i] = distanciaEuclidea(MejoresPT,X[i,]) #Calcula la distancia de cada vector con el punto ideal(máximo calculado anteriormente)
     }
     ##AltPT
     names(AltPT) = rownames(tablaX)
-    PuntoIdeal = min(AltPT);
+    PuntoIdeal = min(AltPT); #Busca el que tenga la menor distancia y lo guarda en la variable punto ideal 
     Alt_PuntoIdeal = which.min.general(AltPT);
     metodo = 'favorable';
   } else {
-    MejoresPT = apply(X,MARGIN=2,min); # desfavorable
-    AltPT = rep(0,dim(X)[1])
+    MejoresPT = apply(X,MARGIN=2,min); # Ahora es el método desfavorable, busca el mínimo de cada estado
+    AltPT = rep(0,dim(X)[1]) #nuevamente se crea el vector para cada alternativa 
     names(AltPT) = rownames(tablaX)
     for (i in 1:dim(X)[1]) {
-      AltPT[i] = distanciaEuclidea(MejoresPT,X[i,])
+      AltPT[i] = distanciaEuclidea(MejoresPT,X[i,]) #Calcula la distancia entre el vector y el punto mínimo 
     }
     ##AltPT
-    PuntoIdeal = min(AltPT);
+    PuntoIdeal = min(AltPT); #busca el vector con menor distancia al mínimo y lo guarda como punto ideal 
     Alt_PuntoIdeal = which.min.general(AltPT);
     metodo = 'desfavorable';
   }
