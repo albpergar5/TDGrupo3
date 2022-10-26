@@ -642,6 +642,7 @@ criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
 
 }
 
+#Calcular todos los criterios en una misma función, llama las funciones de los 6 distintos criterios 
 criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
 
   cri01 = criterio.Wald(tablaX,favorable);
