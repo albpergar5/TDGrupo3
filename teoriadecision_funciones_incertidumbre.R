@@ -31,7 +31,9 @@ crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
 # el menor valor de dicho vector
 which.min.general = function(vector) {
   minimo = min(vector);
-  res = which(vector == minimo); #el comando which dice cuál es la posición del mínimo en el vector y si hay empate muestra todas las que hay, no sólo el primero
+  res = which(vector == minimo); 
+  # el comando which dice cuál es la posición del mínimo en el vector.
+  # si hay empate muestra todas las que hay, no sólo el primero.
   return(res);
 
 }
@@ -42,7 +44,7 @@ which.min.general = function(vector) {
 # el mayor valor de dicho vector
 which.max.general = function(vector) {
   maximo = max(vector);
-  res = which(vector == maximo); ##which devuelve la posicion del maximo vector
+  res = which(vector == maximo); ##which devuelve la posición del máximo vector
   return(res);
 
 }
@@ -144,7 +146,8 @@ criterio.tablaX.ejemplos = function(cual=1) {
  # que dé mejor valor. Nos aseguramos que en el peor de los casos obtengamos lo mejor 
  # posible, por tanto es una visión pesimista.
 criterio.Wald = function(tablaX,favorable=TRUE) {
-  # Entrada: tabla de las alternativas con sus datos y método.
+  # Entrada: tabla de las alternativas y estados con los coeficientes.
+  #          método = (T/F).
   X = tablaX; #renombramos la tabla
   if (favorable) {
     AltW = apply(X,MARGIN=1,min);
@@ -643,44 +646,56 @@ criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
 }
 
 criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
-
+  # Esta función sirve para mostrar todos los criterios con sus resultados a la vez 
+  # en un mismo data.frame.
+  # Entrada: tabla con los coeficientes de las alternativas y estados de la naturaleza.
+  #          valor de alfa entre 0 y 1.
+  #          método = T/F
   cri01 = criterio.Wald(tablaX,favorable);
   cri02 = criterio.Optimista(tablaX,favorable);
   cri03 = criterio.Hurwicz(tablaX,alfa,favorable);
   cri04 = criterio.Savage(tablaX,favorable);
   cri05 = criterio.Laplace(tablaX,favorable);
   cri06 = criterio.PuntoIdeal(tablaX,favorable);
-
-  numestados = ncol(tablaX)
-  numalterna = nrow(tablaX)
+  # Renombramos los criterios creados bajo incertidumbre con sus parámetros de entrada 
+  # correspondientes.
+  numestados = ncol(tablaX) # El número de columnas de la tabla se corresponde con el número de
+  # estados de la naturaleza.
+  numalterna = nrow(tablaX) # El número de filas es el número de alternativas.
 
   resultado = cbind(tablaX,cri01$ValorAlternativas,cri02$ValorAlternativas,
                     cri03$ValorAlternativas,cri04$ValorAlternativas,
                     cri05$ValorAlternativas,cri06$ValorAlternativas);
-
+  # juntamos por columnas la tabla creada y los valores de las alternativas por cada criterio
+  # y lo guardamos.
   decopt = c(rep(NA,numestados),cri01$AlternativaOptima[1],
              cri02$AlternativaOptima[1],cri03$AlternativaOptima[1],
              cri04$AlternativaOptima[1],cri05$AlternativaOptima[1],
              cri06$AlternativaOptima[1]);
-
+  # creamos un vector con repitiendo NA el número de estados que haya y la posición 1 de las 
+  # alternativas óptimas de todos los criterios.
   resultado = rbind(resultado,decopt);
-
+  # juntamos por filas el vector y lo agrupado con cbind. Lo guardamos.
   colnames(resultado)[numestados+1] = cri01$criterio;
   colnames(resultado)[numestados+2] = cri02$criterio;
   colnames(resultado)[numestados+3] = cri03$criterio;
   colnames(resultado)[numestados+4] = cri04$criterio;
   colnames(resultado)[numestados+5] = cri05$criterio;
   colnames(resultado)[numestados+6] = cri06$criterio;
+  # Ponemos el nombre del criterio a las columnas del rbind obviando las numestados-primeras.
 
   if (favorable) {
     rownames(resultado)[numalterna+1] = 'iAlt.Opt (fav.)';
+    # Para favorable = T, llamamos a la fila después de numalternativas como iAlt.Opt (fav.).
   } else {
     rownames(resultado)[numalterna+1] = 'iAlt.Opt (Desfav.)';
+    # Para favorable = F, llamamos a la fila después de numalternativas como iAlt.Opt (Desfav.).
   }
 
   ## nuevo
-  resultado = as.data.frame(resultado)
-  resultado = format(resultado,digits=4)
+  resultado = as.data.frame(resultado) # Transformamos el rbind en un data.frame.
+  resultado = format(resultado,digits=4) # Redondeamos los resultados a 4 decimales.
+  
   decopt = c(rep('--',numestados),
              paste0(names(cri01$AlternativaOptima),collapse = ","),
              paste0(names(cri02$AlternativaOptima),collapse = ","),
@@ -688,11 +703,15 @@ criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
              paste0(names(cri04$AlternativaOptima),collapse = ","),
              paste0(names(cri05$AlternativaOptima),collapse = ","),
              paste0(names(cri06$AlternativaOptima),collapse = ","));
+  # Creamos un vector con -- numestados veces y con el comando paste0 obtenemos los nombres
+  # de la alternativa óptima de cada criterio separadas con comas.
   resultado[nrow(resultado),] = decopt
+  # Este vector lo utilizamos en el nombre de las filas del data.frame.
   ## fin nuevo
 
   return(resultado)
 
+  #Devuelve el data.frame
 }
 
 
