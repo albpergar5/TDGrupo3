@@ -605,7 +605,7 @@ criterio.Laplace = function(tablaX,favorable=TRUE) {
 }
 
 
-
+#Funcion que ...
 criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
 
   X = tablaX;
