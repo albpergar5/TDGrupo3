@@ -666,12 +666,27 @@ criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
   resultado = cbind(tablaX,cri01$ValorAlternativas,cri02$ValorAlternativas,
                     cri03$ValorAlternativas,cri04$ValorAlternativas,
                     cri05$ValorAlternativas,cri06$ValorAlternativas);
+  
+  # añadir la columna que cuente cuántas veces ha sido "óptima" cada decisión
+  # primero unimos en un único vector todas las alternativas óptimas
+  optimas=c(cri01$AlternativaOptima,cri02$AlternativaOptima,
+            cri03$AlternativaOptima,cri04$AlternativaOptima,
+            cri05$AlternativaOptima,cri06$AlternativaOptima)
+  # hacemos un vector de ceros y contamos para cada decisión cuántas veces fue óptima
+  Conteo=numeric(numalterna)
+  for(i in 1:numalterna){
+    Conteo[i]=sum(optimas==i)
+  }
+  # sobre escribo la tabla que antes era mi resultado
+  resultado = cbind(resultado, Conteo)
+  # se añade con ese nombre, si quisieramos cambiarlo podríamos hacerlo
+  
   # juntamos por columnas la tabla creada y los valores de las alternativas por cada criterio
   # y lo guardamos.
   decopt = c(rep(NA,numestados),cri01$AlternativaOptima[1],
              cri02$AlternativaOptima[1],cri03$AlternativaOptima[1],
              cri04$AlternativaOptima[1],cri05$AlternativaOptima[1],
-             cri06$AlternativaOptima[1]);
+             cri06$AlternativaOptima[1],NA);
   # creamos un vector con repitiendo NA el número de estados que haya y la posición 1 de las 
   # alternativas óptimas de todos los criterios.
   resultado = rbind(resultado,decopt);
@@ -702,7 +717,10 @@ criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
              paste0(names(cri03$AlternativaOptima),collapse = ","),
              paste0(names(cri04$AlternativaOptima),collapse = ","),
              paste0(names(cri05$AlternativaOptima),collapse = ","),
-             paste0(names(cri06$AlternativaOptima),collapse = ","));
+             paste0(names(cri06$AlternativaOptima),collapse = ","),
+             paste0("d",which.max.general(Conteo)));
+  # el último valor será la o las alternativas con mayor número de votos
+  
   # Creamos un vector con -- numestados veces y con el comando paste0 obtenemos los nombres
   # de la alternativa óptima de cada criterio separadas con comas.
   resultado[nrow(resultado),] = decopt
