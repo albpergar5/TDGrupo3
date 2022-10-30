@@ -20,6 +20,6 @@ Rubén: Savage.
 
 Magdalena: Laplace (realizado). 
 
-Laura: Punto Ideal. 
+Laura: Punto Ideal (realizado). 
 
 
