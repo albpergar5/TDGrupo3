@@ -1,5 +1,5 @@
 # TDGrupo3
-**Componentes del grupo:  **
+**Componentes del grupo:**    
 · Laura Gutiérrez Espinosa  
 · Rubén Gutiérrez Gallego  
 · Magdalena Jáñez Vaz  
