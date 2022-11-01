@@ -317,9 +317,10 @@ criterio.Hurwicz.General = function(tablaX,alfa=0.3,favorable=TRUE) {
     }
     metodo = 'desfavorable';
   }
+#Se crea la lista de resultados 
   resultados = list();
-  resultados$criterio = 'Hurwicz';
-  resultados$alfa = alfa;
+  resultados$criterio = 'Hurwicz'; #nombre del criterio
+  resultados$alfa = alfa; 
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
   resultados$ValorAlternativas = vAltH;
@@ -509,7 +510,7 @@ dibuja.criterio.Hurwicz_Intervalos = function(tablaX,favorable=TRUE,mostrarGrafi
     }
     colnames(Soluciones)=c("Intervalo","Alternativa")
 
-    resultados = list();
+    resultados = list(); #Sec crea una lista con los resultados que devuelve la función
     resultados$AltOptimas = Alt;
     resultados$PuntosDeCorte = alfaCorte;
     resultados$IntervalosAlfa = Soluciones;
@@ -629,9 +630,11 @@ criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
     }
     ##AltPT
     PuntoIdeal = min(AltPT); #busca el vector con menor distancia al mínimo y lo guarda como punto ideal 
-    Alt_PuntoIdeal = which.min.general(AltPT);
+    Alt_PuntoIdeal = which.min.general(AltPT); #manda un vector a la función which.min, la cual regresa un vector con la posición en la cuál se encuentra el menor valor de ese vector
     metodo = 'desfavorable';
   }
+#Se crea una lista de resultados la cual devolverá la función, en ella guardamos el nombre del citerio, su método (favorable o desfavorable), la tabla de decisión que se está utilizando
+#También el máximo de cada fila, al igual que sus distancias
   resultados = list();
   resultados$criterio = 'Punto Ideal';
   resultados$metodo = metodo;
@@ -639,9 +642,9 @@ criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
   resultados$Mejores = MejoresPT;
   resultados$ValorAlternativas = AltPT;
   resultados$ValorOptimo = PuntoIdeal;
-  resultados$AlternativaOptima = Alt_PuntoIdeal;
+  resultados$AlternativaOptima = Alt_PuntoIdeal; #Aquí guarda la desición óptima
 
-  return(resultados);
+  return(resultados); #Por último devolvemos la lista de resultados completa
 
 }
 
