@@ -16,7 +16,7 @@ Alberto: Wald (realizado).
 
 Cecilia: Optimista. 
 
-Rubén: Savage. 
+Rubén: Savage (realizado). 
 
 Magdalena: Laplace (realizado). 
 
