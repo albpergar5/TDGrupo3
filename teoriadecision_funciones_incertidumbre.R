@@ -1,6 +1,7 @@
 # fichero: teoriadecision_funciones_incertidumbre_nuevo.R ----
 ## Funciones útiles ----
 
+
 crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
   # valores de entrada:
   # matriz de valores de las decisiones según cada estado, se introduce por filas,
