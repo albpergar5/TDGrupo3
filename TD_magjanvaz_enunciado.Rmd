@@ -52,7 +52,7 @@ Ahora con ambos vectores construimos la matriz para nuestro problema, y lo evalu
 tabla = crea.tablaX(c(castillo, piscina),
                    numalternativas = 2,
                    numestados = 5)
-
+ 
 resultado=criterio.Todos(tabla,0.5,F)
 
 knitr::kable(resultado)
