@@ -23,4 +23,27 @@ Magdalena: Laplace (realizado).
 Laura: Punto Ideal (realizado). 
 
 
+**Añadidos extras**
 
+Comentarios a las funciones auxiliares del script:
+
+which.min.general - Alberto
+
+distanciaEuclidea - Magdalena
+
+Posteriormente también la creación de la función distanciaEuclidea2 que hace lo mismo que distanciaEuclidea pero da error si se introducen dos puntos con distinto número de coordenadas
+
+which.max.general - Cecilia
+
+criterio.Hurwicz: Magdalena
+
+criterio.tablaX.ejemplos: Magdalena
+
+criterio.Wald: Alberto
+
+crea.tablaX: Magdalena
+
+
+**Nota para la evaluación del trabajo**
+
+Hay algunos commits que se atribuyen a "Your Name" o "your-github-email" por un error en la cuenta magjanvaz que no estaba bien vinculada con el correo, y por tanto se subían de esa forma. Esto ya fue corregido gracias a la ayuda de Pedro.
