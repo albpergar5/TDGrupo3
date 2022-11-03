@@ -43,6 +43,8 @@ criterio.Wald: Alberto
 
 crea.tablaX: Magdalena
 
+criterio.Todos: Alberto
+
 
 **Nota para la evaluación del trabajo**
 
