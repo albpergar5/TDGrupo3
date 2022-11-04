@@ -510,7 +510,7 @@ dibuja.criterio.Hurwicz_Intervalos = function(tablaX,favorable=TRUE,mostrarGrafi
     }
     colnames(Soluciones)=c("Intervalo","Alternativa")
 
-    resultados = list(); #Sec crea una lista con los resultados que devuelve la función
+    resultados = list(); #Se crea una lista con los resultados que devuelve la función
     resultados$AltOptimas = Alt;
     resultados$PuntosDeCorte = alfaCorte;
     resultados$IntervalosAlfa = Soluciones;
