@@ -1,1 +1,50 @@
+---
+title: "TD_Laura_enunciado"
+output:
+  html_document: default
+  pdf_document: default
+date: "2022-11-01"
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
+```
+
+**Enunciado**
+José quiere hacer un concierto al aire libre el sábado pero si llueve no iría mucha gente y no tendría tantas ganancias, quiere cobrar la entrada a 15 euros, es por eso que considera las siguientes opciones: hacer el concierto en un teatro donde si no llueve iría un aproximado de 2,800 personas y si llueve 3,600, o si hacer el concierto en aire libre y si llueve irían aproximadamente 800 personas pero si no llueve 5,200. 
+Que le recomendarías a José si quiere maximizar sus ganancias. 
+
+**Esquema**
+El problema se basa en un modelo favorable (beneficios)
+
+Estados de la naturaleza:
+- llueve 
+- no llueve
+
+Alternativas:
+- Teatro
+- Aire libre
+
+**Resolución**
+
+Hacemos las matrices de beneficios
+```{r}
+(m11=3600*15)
+(m12=800*15)
+
+(m21=2800*15)
+(m22=5200*15)
+
+tabla = crea.tablaX(c(m11,m21,
+                   m12,m22),2,2)
+
+resultado = criterio.Todos(tabla,0.5,TRUE)
+
+knitr::kable(resultado)
+```
+
+Si José solo toma en consideración sus ganancias, la mejor opción sería hacer el concierto en el teatro. Sin embargo, si José decide irse por la estrategia "optimista", el cual se piensa que no llovería, la mejor opción sería hacer el concierto al Aire Libre. 
