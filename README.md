@@ -64,6 +64,7 @@
 · columna extra en la función criterio.Todos para el conteo - Magdalena
 
 · creación de la función distanciaEuclidea2 - Magdalena
+
 *Hace lo mismo que la que estaba ya definida, pero comprueba previamente que los puntos introducidos tengan el mismo número de coordenadas.*
 
 **Nota para la evaluación del trabajo**
