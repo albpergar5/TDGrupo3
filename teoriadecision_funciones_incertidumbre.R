@@ -1,6 +1,7 @@
 # fichero: teoriadecision_funciones_incertidumbre_nuevo.R ----
 ## Funciones útiles ----
 
+
 crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
   # valores de entrada:
   # matriz de valores de las decisiones según cada estado, se introduce por filas,
@@ -521,34 +522,62 @@ dibuja.criterio.Hurwicz_Intervalos = function(tablaX,favorable=TRUE,mostrarGrafi
 
 
 
-## Savage
+## Savage (comentado por RUBÉN).
+
+# Este criterio toma en consideración el coste de oportunidad o penalización o arrepentimiento por no 
+# prever correctamente el estado de la naturaleza. Estos costes de oportunidad se evalúan para cada 
+# alternativa y cada estado de la naturaleza. Buscamos entonces minimizar el máximo arrepentimiento.
 
 criterio.Savage = function(tablaX,favorable=TRUE) {
-
+  # ENTRADA: tabla con los valores de cada decisión y cada estado.
+  # MÉTODO A UTILIZAR: favorable (TRUE) o desfavorable (FALSE).
+  # La tabla debe introducirse en un formato válido (con la función crea.tablaX)
   X = tablaX;
+  # Renombramos la tabla para facilitar el manejo de la misma.
   if (favorable) {
+    # Para el caso favorable:
+    # Buscamos el máximo por columna de nuestra tabla y lo guardamos en 'Mejores'.
     Mejores = apply(X,MARGIN=2,max);
-    temp1 = rep(Mejores,dim(X)[1])
+    # Guardamos en 'temp1' un vector del tamaño del número de columnas con los valores de 'Mejores'.
+    temp1 = rep(Mejores,dim(X)[1]) 
+    # Transformamos el vector 'temp1' en una matriz 'Mmejores' de la misma dimensión que 'X'.
     Mmejores = matrix(temp1,nrow=dim(X)[1],ncol=dim(X)[2],byrow=TRUE);
+    # Calculamos la TABLA DE ARREPENTIMIENTOS o matriz de penalizaciones 'Pesos', resultado de la diferencia 
+    # (en valor absoluto) entre la matriz 'Mmejores' y la matriz de datos 'X'.
     Pesos = abs(Mmejores-X);
     ##print(Pesos)
-    ## Ahora criterio Wald Minimax Pesimista (desfavorable)
+    # Ahora, sobre esta matriz se aplica el criterio Wald Minimax Pesimista (desfavorable).
     AltWS= apply(Pesos,MARGIN=1,max);
+    # Al minimo de los pesos máximos lo llamamos 'Savage', de donde tomaremos la desición final.
     Savage = min(AltWS);
+    # Obtenemos la posición (o posiciones) del valor donde se alcanza el mínimo.
     Alt_Savage = which.min.general(AltWS);
     metodo = 'favorable';
   } else {
+    # Para el caso desfavorable:
+    # Buscamos el mínimo por columna de nuestra tabla y lo guardamos en 'Mejores'.
     Mejores = apply(X,MARGIN=2,min);
+    # Guardamos en 'temp1' un vector del tamaño del número de columnas con los valores de 'Mejores'.
     temp1 = rep(Mejores,dim(X)[1])
+    # Transformamos el vector 'temp1' en una matriz 'Mmejores' de la misma dimensión que 'X'.
     Mmejores = matrix(temp1,nrow=dim(X)[1],ncol=dim(X)[2],byrow=TRUE);
+    # Calculamos la TABLA DE ARREPENTIMIENTOS o matriz de penalizaciones 'Pesos', resultado de la diferencia 
+    # (en valor absoluto) entre la matriz 'Mmejores' y la matriz de datos 'X'.
     Pesos = abs(Mmejores-X);
-    ## Ahora criterio Wald Minimax (desfavorable)
+    # Ahora, sobre esta matriz se aplica el criterio Wald Minimax Pesimista (desfavorable).
     AltWS= apply(Pesos,MARGIN=1,max);
+    # Al minimo de los pesos máximos lo llamamos 'Savage', de donde tomaremos la desición final.
     Savage = min(AltWS);
+    # Obtenemos la posición (o posiciones) del valor donde se alcanza el mínimo, indicándonos la alternativa a elegir.
     Alt_Savage = which.min.general(AltWS);
     metodo = 'desfavorable';
   }
   resultados = list();
+  # Creamos la lista de resultados que devuelve nuestra función. En ella aparece el nombre del criterio,
+  # en este caso 'Savage'; el método aplicado, favorable o desfavorable; la tabla de valores con la que 
+  # hemos trabajado, 'tablaX'; el vector de máximos o mínimos, 'Mejores'; la tabla de arrepentimientos, 'Pesos';
+  # el máximo valor en cada alternativa a elegir, 'AltWS'; el valor óptimo (mínimo), 'Savage'; y la alternativa 
+  # (o alternativas, en caso de empate) que deberíamos de elegir por el criterio Savage, 'Alt_Savage'. 
   resultados$criterio = 'Savage';
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
@@ -557,7 +586,8 @@ criterio.Savage = function(tablaX,favorable=TRUE) {
   resultados$ValorAlternativas = AltWS;
   resultados$ValorOptimo = Savage;
   resultados$AlternativaOptima = Alt_Savage;
-
+  
+  #Devolvemos la lista de los resultados:
   return(resultados);
 
 
