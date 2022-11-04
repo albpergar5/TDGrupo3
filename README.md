@@ -6,45 +6,65 @@
 · Alberto Pérez García  
 · Cecilia Velasco Salvador (R)  
 
-**Reunión del día 05/10/22**
+**Objetivos**
 
-Creación del repositorio común, reparto de trabajo. Cada uno comenzaremos comentando una de las funciones que hay en el fichero teoriadecision_funciones_incertidumbre.R intentando clarificar los cálculos que va haciendo en el R.
+· Documentar el archivo teoriadecision_funciones_incertidumbre.R mediante comentarios en el scritp
+· Pensar mejoras para las funciones existentes
+· Crear enuciados de problemas de decisión y resolverlos mediante las funciones de este script
+· Corregir posibles errores
 
-**Asignación inicial de tareas:**
 
-Alberto: Wald (realizado).
+**Reunión inicial el día 05/10/22**
 
-Cecilia: Optimista. 
+· Creación del repositorio común
+· Reparto de trabajo.
+· *Objetivo establecido:* Cada uno comenzaremos comentando una de las funciones que hay en el fichero teoriadecision_funciones_incertidumbre.R intentando clarificar los cálculos que va haciendo en el R.
 
-Rubén: Savage (realizado). 
+**Asignación de tareas:**
 
-Magdalena: Laplace (realizado). 
+· Alberto: Wald (realizado).
 
-Laura: Punto Ideal (realizado). 
+· Cecilia: Optimista. 
+
+· Rubén: Savage (realizado). 
+
+· Magdalena: Laplace (realizado). 
+
+· Laura: Punto Ideal (realizado). 
+
+*Aquellas que quedan sin asignar pueden irse comentando de forma libre*
 
 
 **Añadidos extras**
 
-Comentarios a las funciones auxiliares del script:
+*Comentarios a las funciones auxiliares del script:*
 
-which.min.general - Alberto
+· which.min.general - Alberto
 
-distanciaEuclidea - Magdalena
+· distanciaEuclidea - Magdalena
 
-Posteriormente también la creación de la función distanciaEuclidea2 que hace lo mismo que distanciaEuclidea pero da error si se introducen dos puntos con distinto número de coordenadas
+· which.max.general - Cecilia
 
-which.max.general - Cecilia
+· criterio.Hurwicz: Magdalena
 
-criterio.Hurwicz: Magdalena
+· criterio.tablaX.ejemplos: Magdalena
 
-criterio.tablaX.ejemplos: Magdalena
+· crea.tablaX: Magdalena
 
-criterio.Wald: Alberto
 
-crea.tablaX: Magdalena
+*Comentarios a las funciones del script que quedaban sin asignar:*
 
-criterio.Todos: Alberto
+· criterio.Wald: Alberto
 
+· criterio.Todos: Alberto
+
+
+*Modificaciones a las funciones:*
+
+· columna extra en la función criterio.Todos para el conteo: Magdalena
+
+· creación de la función distanciaEuclidea2 : Magdalena
+*Hace lo mismo que la que estaba ya definida, pero comprueba previamente que los puntos introducidos tengan el mismo número de coordenadas.*
 
 **Nota para la evaluación del trabajo**
 
