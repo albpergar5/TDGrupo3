@@ -45,25 +45,25 @@
 
 · which.max.general - Cecilia
 
-· criterio.Hurwicz: Magdalena
+· criterio.Hurwicz - Magdalena
 
-· criterio.tablaX.ejemplos: Magdalena
+· criterio.tablaX.ejemplos - Magdalena
 
-· crea.tablaX: Magdalena
+· crea.tablaX - Magdalena
 
 
 *Comentarios a las funciones del script que quedaban sin asignar:*
 
-· criterio.Wald: Alberto
+· criterio.Wald - Alberto
 
-· criterio.Todos: Alberto
+· criterio.Todos - Alberto
 
 
 *Modificaciones a las funciones:*
 
-· columna extra en la función criterio.Todos para el conteo: Magdalena
+· columna extra en la función criterio.Todos para el conteo - Magdalena
 
-· creación de la función distanciaEuclidea2 : Magdalena
+· creación de la función distanciaEuclidea2 - Magdalena
 *Hace lo mismo que la que estaba ya definida, pero comprueba previamente que los puntos introducidos tengan el mismo número de coordenadas.*
 
 **Nota para la evaluación del trabajo**
