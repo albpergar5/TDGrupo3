@@ -15,7 +15,7 @@ source("teoriadecision_funciones_incertidumbre.R")
 ```
 
 **Enunciado**
-José quiere hacer un concierto al aire libre el sábado pero si llueve no iría mucha gente y no tendría tantas ganancias, quiere cobrar la entrada a 15 euros, es por eso que considera las siguientes opciones: hacer el concierto en un teatro donde si no llueve iría un aproximado de 2,800 personas y si llueve 3,600, o si hacer el concierto en aire libre y si llueve irían aproximadamente 800 personas pero si no llueve 5,200. 
+José quiere hacer un concierto al aire libre el sábado pero si llueve no iría mucha gente y no tendría tantas ganancias, quiere cobrar la entrada a 15 euros, es por eso que considera las siguientes opciones: hacer el concierto en un teatro, el cual le costaría 5,000 rentarlo, donde si no llueve iría un aproximado de 2,800 personas y si llueve 3,600, o si hacer el concierto en aire libre, donde no tendría que pagar renta pero si llueve irían aproximadamente 800 personas, mientras que si no llueve 5,200. 
 Que le recomendarías a José si quiere maximizar sus ganancias. 
 
 **Esquema**
@@ -33,10 +33,10 @@ Alternativas:
 
 Hacemos las matrices de beneficios
 ```{r}
-(m11=3600*15)
+(m11=3600*15-5000)
 (m12=800*15)
 
-(m21=2800*15)
+(m21=2800*15-5000)
 (m22=5200*15)
 
 tabla = crea.tablaX(c(m11,m21,
@@ -47,4 +47,4 @@ resultado = criterio.Todos(tabla,0.5,TRUE)
 knitr::kable(resultado)
 ```
 
-Si José solo toma en consideración sus ganancias, la mejor opción sería hacer el concierto en el teatro. Sin embargo, si José decide irse por la estrategia "optimista", el cual se piensa que no llovería, la mejor opción sería hacer el concierto al Aire Libre. 
+Si José solo toma en consideración sus ganancias, la mejor opción sería hacer el concierto al aire libre. Sin embargo, si José decide irse por la estrategia de Wald "pesimista", el cual se piensa el peor resultado, o sea que lloverá, la mejor opción sería hacer el concierto en el teatro. 
