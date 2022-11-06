@@ -9,11 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Alberto Pérez García" />
+<meta name="author" content="Rubén Gutiérrez Gallego" />
 
-<meta name="date" content="2022-11-03" />
+<meta name="date" content="2022-11-04" />
 
-<title>TD_albpergar5_enunciado</title>
+<title>TD_rubgutgal_enunciado</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -300,8 +300,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -309,9 +309,16 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -356,9 +363,9 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">TD_albpergar5_enunciado</h1>
-<h4 class="author">Alberto Pérez García</h4>
-<h4 class="date">2022-11-03</h4>
+<h1 class="title toc-ignore">TD_rubgutgal_enunciado</h1>
+<h4 class="author">Rubén Gutiérrez Gallego</h4>
+<h4 class="date">2022-11-04</h4>
 
 </div>
 
@@ -367,77 +374,85 @@ pre code {
 source(&quot;teoriadecision_funciones_incertidumbre.R&quot;)</code></pre>
 <div id="enunciado" class="section level1">
 <h1>Enunciado</h1>
-<p>Lucas está pensando en llevar el coche que comparte con sus dos
-hermanos a un taller para realizarle una revisión debido a la gran
-cantidad de kilómetros recorridos. Así, tiene a disposición tres
-posibles talleres con sus condiciones:</p>
+<p>Mario está planteandose comprarse un coche, pero para ello ha
+decidido crear una cuenta de ahorros en un banco. Ha ido a distintas
+entidades bancarias para informarse sobre los planes de ahorro que tiene
+cada una adecuadas a su situación:</p>
 <ul>
-<li><p>En el taller “McQueen” el cambio de aceite y filtro cuesta 150 €
-y la sustitución de las pastillas de freno a 120€.</p></li>
-<li><p>En el taller “Mate” el cambio de aceite y filtro vale 200 € y la
-sustitución de las pastillas de freno son 100€.</p></li>
-<li><p>En el taller “Hudson” el mantenimiento del aceite, filtro y
-pastillas de freno cuesta 260 €.</p></li>
+<li><p>En GuadairaBank le ofrecen no cobrarle comisiones durante el
+primer año, mientras que a partir del segundo año le cobran una comision
+del 8% de mantenimiento de la cuenta. Además le pagarían el primer año
+de seguro.</p></li>
+<li><p>En Caja de Ahorros Monroy le ofrecen cobrarle una comisión del 5%
+durante el los 12 primeros meses, pero luego se lo suben al 8%. También
+le pagan el primer año de seguro del coche y los gastos de compra del
+vehículo.</p></li>
+<li><p>En Banca del Águila tiene la posibilidad de que no le cobren
+comisiones pero no le cubriría ningún gasto extra que implique la compra
+del vehículo.</p></li>
 </ul>
-<p>Todos los talleres ofrecen no sólo una revisión, sino la posibilidad
-de hacer 2 y 3. Una cada año.</p>
+<p>Mario prevee tener el coche dentro de 1 año y medio ahorrando
+mensualmente 750€; o dentro de 2 años, ahorrando mensualmente 620€.
+Sabiendo que los gastos de la compra del coche son:</p>
 <ul>
-<li><p>El taller “McQueen” para la segunda revisión el precio se
-mantiene y para la tercera hace un descuento del 50%.</p></li>
-<li><p>El taller “Mate” en la segunda revisión aplica un descuento del
-10% y en la tercera, las pastillas de freno salen gratuitas.</p></li>
-<li><p>El taller “Hudson” rebaja un 15% en la segunda revisión y hasta
-un 40% en la tercera.</p></li>
+<li><p>Coche: 12300€ dentro de un año y medio, mientras que el precio
+subirá dentro de dos años a 13500 por ser un modelo nuevo.</p></li>
+<li><p>Gastos derivados de la compra (movimiento de papeles):
+300€</p></li>
+<li><p>Seguro del coche el primer año: 700€</p></li>
 </ul>
-<p>Además, Lucas quiere sustituir los 4 neumáticos de su vehículo en la
-primera revisión y los talleres le ofrecen estos precios:</p>
-<p>En el primer taller deberá pagar 400 € extras en la primera visita,
-en el segundo 200 € y el último establece un precio de 300 €.</p>
-<p>El objetivo de Lucas es minimizar los costes de la revisión que le
-tocará pagar ya que ha acordado con sus hermanos pagar una cada uno y no
-sabe cuál es la que tendrá que abonar.</p>
+<p>¿Qué entidad bancaria le recomienda para que, una vez compre el
+coche, tenga el máximo ahorro?</p>
 </div>
-<div id="planteamiento" class="section level1">
-<h1>Planteamiento</h1>
-<p>Este problema se basa en un modelo desfavorable (de costes).</p>
+<div id="esquema" class="section level1">
+<h1>Esquema</h1>
+<p>El problema presenta un modelo de beneficios (favorable).</p>
 <ul>
-<li><p>Decisor: Lucas.</p></li>
+<li><p>Decisor: Mario.</p></li>
 <li><p>Alternativas:</p>
 <ol style="list-style-type: decimal">
-<li>McQueen</li>
-<li>Mate</li>
-<li>Hudson</li>
+<li>GuadairaBank.</li>
+<li>Caja de Ahorros Monroy.</li>
+<li>Banca del Águila.</li>
 </ol></li>
 <li><p>Estados de la naturaleza:</p>
 <ol style="list-style-type: decimal">
-<li>1ª revisión</li>
-<li>2ª revisión</li>
-<li>3ª revisión</li>
+<li>Dentro de 1 año y medio.</li>
+<li>Dentro de 2 años.</li>
 </ol></li>
 </ul>
 </div>
 <div id="resolución" class="section level1">
 <h1>Resolución</h1>
-<p>Vamos a montar la matriz de decisión. Cada vector que se va a crear
-son las alternativas:</p>
-<pre class="r"><code>mcqueen= c(150 + 120 + 300, 270, 270 * 0.5)
-mate= c(200 + 100 + 200, 300 * 0.9, 200)
-hudson= c(260 + 400, 260 * 0.85, 260 * 0.6)</code></pre>
-<p>Con estos vectores pasamos a crear la tabla.</p>
-<pre class="r"><code>tb=crea.tablaX(c(mcqueen,mate,hudson),numalternativas = 3,numestados = 3)
-res=criterio.Todos(tb,alfa = 0.5,F)
-knitr::kable(res)</code></pre>
-<table>
+<p>Veamos los costos que supone cada entidad bancaria para cada
+intervalo de tiempo. Primero creamos los vectores para la matriz de
+decisión:</p>
+<pre class="r"><code>md11 = 750*12 + (750*0.90)*6 - 12300 - 300</code></pre>
+<pre class="r"><code>md12 = 620*12 + (620*0.90)*12 - 13500 - 300</code></pre>
+<pre class="r"><code>md21 = (750*0.95)*12 + (750*0.92)*6 - 12300</code></pre>
+<pre class="r"><code>md22 = (620*0.95)*12 + (620*0.92)*12 - 13500</code></pre>
+<pre class="r"><code>md31 = 750*18 - 12300 - 300 - 700</code></pre>
+<pre class="r"><code>md32 = 620*24 - 13500 - 300 - 700</code></pre>
+<p>Ahora, construimos la matriz de costos de nuestro problema, y lo
+evaluamos según todos los métodos que conocemos.</p>
+<pre class="r"><code>tabla = crea.tablaX(c(md11, md12,
+                      md21, md22,
+                      md31, md32),
+                    numalternativas = 3, numestados = 2)
+resultado = criterio.Todos(tabla, alfa = 0.5, TRUE)
+rownames(resultado) = c(&quot;GuadairaBank&quot;, &quot;Banco de ahorros Monroy&quot;,
+                        &quot;Banca del Águila&quot;,&quot;Decisión recomendada:&quot;)
+knitr::kable(resultado)</code></pre>
+<table style="width:100%;">
 <colgroup>
-<col width="21%" />
+<col width="26%" />
 <col width="4%" />
-<col width="4%" />
-<col width="4%" />
+<col width="6%" />
 <col width="5%" />
-<col width="11%" />
-<col width="9%" />
+<col width="10%" />
+<col width="8%" />
 <col width="7%" />
-<col width="9%" />
+<col width="8%" />
 <col width="13%" />
 <col width="7%" />
 </colgroup>
@@ -446,7 +461,6 @@ knitr::kable(res)</code></pre>
 <th align="left"></th>
 <th align="left">e1</th>
 <th align="left">e2</th>
-<th align="left">e3</th>
 <th align="left">Wald</th>
 <th align="left">Optimista</th>
 <th align="left">Hurwicz</th>
@@ -458,47 +472,43 @@ knitr::kable(res)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">d1</td>
-<td align="left">570</td>
-<td align="left">270</td>
-<td align="left">135</td>
-<td align="left">570</td>
-<td align="left">135</td>
-<td align="left">352.5</td>
-<td align="left">70</td>
-<td align="left">325.0</td>
-<td align="left">85.45</td>
+<td align="left">GuadairaBank</td>
+<td align="left">450</td>
+<td align="left">336.0</td>
+<td align="left">336</td>
+<td align="left">450.0</td>
+<td align="left">393.0</td>
+<td align="left">76.8</td>
+<td align="left">393.0</td>
+<td align="left">76.8</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">d2</td>
-<td align="left">500</td>
-<td align="left">270</td>
-<td align="left">200</td>
-<td align="left">500</td>
-<td align="left">200</td>
-<td align="left">350.0</td>
-<td align="left">65</td>
-<td align="left">323.3</td>
-<td align="left">81.40</td>
+<td align="left">Banco de ahorros Monroy</td>
+<td align="left">390</td>
+<td align="left">412.8</td>
+<td align="left">390</td>
+<td align="left">412.8</td>
+<td align="left">401.4</td>
+<td align="left">60.0</td>
+<td align="left">401.4</td>
+<td align="left">60.0</td>
 <td align="left">5</td>
 </tr>
 <tr class="odd">
-<td align="left">d3</td>
-<td align="left">660</td>
-<td align="left">221</td>
-<td align="left">156</td>
-<td align="left">660</td>
-<td align="left">156</td>
-<td align="left">408.0</td>
-<td align="left">160</td>
-<td align="left">345.7</td>
-<td align="left">161.37</td>
+<td align="left">Banca del Águila</td>
+<td align="left">200</td>
+<td align="left">380.0</td>
+<td align="left">200</td>
+<td align="left">380.0</td>
+<td align="left">290.0</td>
+<td align="left">250.0</td>
+<td align="left">290.0</td>
+<td align="left">252.1</td>
 <td align="left">0</td>
 </tr>
 <tr class="even">
-<td align="left">iAlt.Opt (Desfav.)</td>
-<td align="left">–</td>
+<td align="left">Decisión recomendada:</td>
 <td align="left">–</td>
 <td align="left">–</td>
 <td align="left">d2</td>
@@ -511,11 +521,12 @@ knitr::kable(res)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Como el objetivo del problema es minimizar los costes de llevar el
-coche a revisión, la mejor opción que deberá coger Lucas será la
-segunda, el taller “Mate”. Sin embargo, si es optimista pensará en lo
-que menos pagará y se decantará por la primera opción, el taller
-“McQueen”.</p>
+<p>La mejor alternativa para Mario es el Banco de Ahorros Monroy, pues
+asegura que el ahorro ya sea dentro de un año y medio o dentro de dos,
+sea máximo, mientras que si Mario es optimista y está seguro que en un
+año y medio va a ahorrar el dinero, debería de decantarse por
+GuadairaBank como la entidad bancaria donde crear su cuenta de ahorros y
+poder llegar a su objetivo.</p>
 </div>
 
 

@@ -18,7 +18,7 @@ source("teoriadecision_funciones_incertidumbre.R")
 
 # Enunciado
 
-Lucas está pensando en llevar su coche a un taller para realizarle una revisión debido a la gran cantidad de kilómetros recorridos. Así, tiene a disposición tres posibles talleres con sus condiciones:
+Lucas está pensando en llevar el coche que comparte con sus dos hermanos a un taller para realizarle una revisión debido a la gran cantidad de kilómetros recorridos. Así, tiene a disposición tres posibles talleres con sus condiciones:
 
   - En el taller "McQueen" el cambio de aceite y filtro cuesta 150 € y la sustitución de las pastillas de freno a 120€.
   
@@ -38,7 +38,7 @@ Además, Lucas quiere sustituir los 4 neumáticos de su vehículo en la primera 
 
 En el primer taller deberá pagar 400 € extras en la primera visita, en el segundo 200 € y el último establece un precio de 300 €. 
 
-El objetivo de Lucas es minimizar los costes.
+El objetivo de Lucas es minimizar los costes de la revisión que le tocará pagar ya que ha acordado con sus hermanos pagar una cada uno y no sabe cuál es la que tendrá que abonar.
 
 
 # Planteamiento

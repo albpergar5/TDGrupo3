@@ -1,0 +1,111 @@
+---
+title: "TD_rubgutgal_enunciado"
+author: "Rubén Gutiérrez Gallego"
+date: '2022-11-04'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list=ls())
+source("teoriadecision_funciones_incertidumbre.R")
+```
+
+# Enunciado
+
+Mario está planteandose comprarse un coche, pero para ello ha decidido crear una cuenta de ahorros en un banco. Ha ido a distintas entidades bancarias para informarse sobre los planes de ahorro que tiene cada una adecuadas a su situación:
+
+- En GuadairaBank le ofrecen no cobrarle comisiones durante el primer año, mientras que a partir del segundo año le cobran una comision del 8% de mantenimiento de la cuenta. Además le pagarían el primer año de seguro.
+
+- En Caja de Ahorros Monroy le ofrecen cobrarle una comisión del 5% durante el los 12 primeros meses, pero luego se lo suben al 8%. También le pagan el primer año de seguro del coche y los gastos de compra del vehículo.
+
+- En Banca del Águila tiene la posibilidad de que no le cobren comisiones pero no le cubriría ningún gasto extra que implique la compra del vehículo.
+
+Mario prevee tener el coche dentro de 1 año y medio ahorrando mensualmente 750€; o dentro de 2 años, ahorrando mensualmente 620€. Sabiendo que los gastos de la compra del coche son:
+
+
+- Coche: 12300€ dentro de un año y medio, mientras que el precio subirá dentro de dos años a 13500 por ser un modelo nuevo.
+
+- Gastos derivados de la compra (movimiento de papeles): 300€
+
+- Seguro del coche el primer año: 700€
+
+¿Qué entidad bancaria le recomienda para que, una vez compre el coche, tenga el máximo ahorro?
+
+
+
+# Esquema
+
+
+El problema presenta un modelo de beneficios (favorable).
+
+
+- Decisor: Mario.
+
+- Alternativas:
+
+    1. GuadairaBank.
+    2. Caja de Ahorros Monroy.
+    3. Banca del Águila.
+
+- Estados de la naturaleza:
+
+    1. Dentro de 1 año y medio.
+    2. Dentro de 2 años.
+    
+
+# Resolución
+
+
+Veamos los costos que supone cada entidad bancaria para cada intervalo de tiempo. Primero creamos los vectores para la matriz de decisión:
+
+```{r}
+md11 = 750*12 + (750*0.90)*6 - 12300 - 300
+```
+
+```{r}
+md12 = 620*12 + (620*0.90)*12 - 13500 - 300
+```
+
+```{r}
+md21 = (750*0.95)*12 + (750*0.92)*6 - 12300
+```
+
+```{r}
+md22 = (620*0.95)*12 + (620*0.92)*12 - 13500
+```
+
+```{r}
+md31 = 750*18 - 12300 - 300 - 700
+```
+
+```{r}
+md32 = 620*24 - 13500 - 300 - 700
+```
+
+Ahora, construimos la matriz de costos de nuestro problema, y lo evaluamos según todos los métodos que conocemos.
+
+```{r}
+tabla = crea.tablaX(c(md11, md12,
+                      md21, md22,
+                      md31, md32),
+                    numalternativas = 3, numestados = 2)
+resultado = criterio.Todos(tabla, alfa = 0.5, TRUE)
+rownames(resultado) = c("GuadairaBank", "Banco de ahorros Monroy",
+                        "Banca del Águila","Decisión recomendada:")
+knitr::kable(resultado)
+```
+
+La mejor alternativa para Mario es el Banco de Ahorros Monroy, pues asegura que el ahorro ya sea dentro de un año y medio o dentro de dos, sea máximo, mientras que si Mario es optimista y está seguro que en un año y medio va a ahorrar el dinero, debería de decantarse por GuadairaBank como la entidad bancaria donde crear su cuenta de ahorros y poder llegar a su objetivo.
+
+
+
+
+
+
+
