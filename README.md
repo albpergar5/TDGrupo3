@@ -9,15 +9,20 @@
 **Objetivos**
 
 · Documentar el archivo teoriadecision_funciones_incertidumbre.R mediante comentarios en el scritp
+
 · Pensar mejoras para las funciones existentes
+
 · Crear enuciados de problemas de decisión y resolverlos mediante las funciones de este script
+
 · Corregir posibles errores
 
 
 **Reunión inicial el día 05/10/22**
 
 · Creación del repositorio común
+
 · Reparto de trabajo.
+
 · *Objetivo establecido:* Cada uno comenzaremos comentando una de las funciones que hay en el fichero teoriadecision_funciones_incertidumbre.R intentando clarificar los cálculos que va haciendo en el R.
 
 **Asignación de tareas:**
