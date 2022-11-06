@@ -1,0 +1,45 @@
+---
+title: "CeciliaVelasco_enunciado"
+output:
+html_document: default
+pdf_document: default
+date: "2022-11-04"
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
+```
+
+**Enunciado**
+  Una empresa farmaceutica que produce analgésicos está estudiando si invertir en el desarrollo de una nueva vacuna o no. La aprobación o no de la vacuna se produciría de forma posterior a su desarrollo. En el caso de que decidan invertir y aprobasen la vacuna, se calcula que los ingresos aumentarían a 100000 euros, mientras que si no se aprobase perderían 50000 euros. Por otro lado, si no invirtiesen en su desarrollo mantendrían sus ingresos de 5000.
+
+
+Estados de la naturaleza:
+- Se aprueba la vacuna 
+- No se aprueba la vacuna
+
+Alternativas:
+- Se invierte en la vacuna
+- No se invierte en la vacuna
+
+
+
+**Resolución**
+  
+  Hacemos las matrices de beneficios
+```{r}
+(m11=100000)
+(m12=5000)
+(m21=-50000)
+(m22=5000)
+tabla = crea.tablaX(c(m11,m21,
+                      m12,m22),2,2)
+resultado = criterio.Todos(tabla,0.5,TRUE)
+knitr::kable(resultado)
+```
+
+Como el criterio es optimista, se tomará la decisión de invertir en el desarrollo de la vacuna puesto que será lo que mayor beneficio pueda dar.
