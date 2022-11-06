@@ -192,33 +192,57 @@ criterio.Wald = function(tablaX,favorable=TRUE) {
 
 
 criterio.Optimista = function(tablaX,favorable=TRUE) {
-
+  # este criterio elige la alternativa que nos de un menor costo o un
+  # mayor beneficio de entre todos los estados y alternativas
   X = tablaX;
+  # renombramos la tabla (introducida en el formato adecuado con crea.tablaX)
+  
   if (favorable) {
+    
+    # en el caso favorable tenemos una tabla de beneficios, buscamos maximizarlo
     AltM = apply(X,MARGIN=1,max);
     ##AltM
     Maximax = max(AltM);
+    # miramos el máximo por filas (por alternativa) y el máximo de los máximos
     Alt_Maximax = which.max.general(AltM);
+    
+    # vemos cuáles son las alternativas que alcanzan dicho máximo
     metodo = 'favorable';
   } else {
+    
+    # en el caso desfavorable trabajamos con costes, queremos minimizarlo
     AltM = apply(X,MARGIN=1,min);
+    # minimizamos el coste por alternativas, y vemos cuál es el mínimo de estos
     ##AltM
     Maximax = min(AltM);
     Alt_Maximax = which.min.general(AltM);
+    
+    # nos quedamos con las alternativas que alcancen dicho mínimo
     metodo = 'desfavorable';
   }
+  
   resultados = list();
+  # creamos una lista en la que almacenaremos todo: el nombre del criterio,
+  
+  # si se trataba de un caso favorable o desfavorable, la tabla de datos
   resultados$criterio = 'Optimista';
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
+  
+  # este valor es el óptimo por cada alternativa, mínimo coste o máximo beneficio
   resultados$ValorAlternativas = AltM;
+  
+  # y este es el mejor valor de entre todas las alternativas
   resultados$ValorOptimo = Maximax;
   resultados$AlternativaOptima = Alt_Maximax;
-
+  
+  # por último nos dice cuáles alternativas alcanzaron el óptimo
+  # y lo que nos devuelve es la lista con todos estos valores
   return(resultados);
 
 
 }
+
 
 
 
