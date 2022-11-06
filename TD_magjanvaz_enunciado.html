@@ -378,7 +378,7 @@ cuesta 15€ por niño, e incluye la merienda y el entretenimiento.</p>
 </div>
 <div id="esquema" class="section level1">
 <h1>Esquema</h1>
-<p>El problema presenta un modelo de costes (desfavorable)</p>
+<p>El problema presenta un modelo de costes (desfavorable) </p>
 <p>Hay dos posibles elecciones: -Castillo hinchable -Piscina de bolas
 </p>
 <p>Hay cinco posibles estados de la naturaleza: -Hay 6 niños en el
@@ -394,12 +394,33 @@ facilidad y optimizar el script.</p>
 <pre><code>## [1] 115 120 125 130 135</code></pre>
 <pre class="r"><code>piscina = 6:10*15; piscina</code></pre>
 <pre><code>## [1]  90 105 120 135 150</code></pre>
+<p>En caso de querer crearlas de la forma habitual, casilla por casilla
+para que sea más intuitivo, podríamos hacer un bucle para cada
+alternativa:</p>
+<pre class="r"><code>castillo2= numeric(5)
+
+for (i in 1:5){
+  niños=i+5;
+  castillo2[i] = niños*5+70+15;
+}
+
+castillo2</code></pre>
+<pre><code>## [1] 115 120 125 130 135</code></pre>
+<pre class="r"><code>piscina2=numeric(5)
+
+for(i in 1:5){
+  niños=i+5;
+  piscina2[i]=niños*15;
+}
+
+piscina2</code></pre>
+<pre><code>## [1]  90 105 120 135 150</code></pre>
 <p>Ahora con ambos vectores construimos la matriz para nuestro problema,
 y lo evaluamos según todos los métodos que conocemos.</p>
 <pre class="r"><code>tabla = crea.tablaX(c(castillo, piscina),
                    numalternativas = 2,
                    numestados = 5)
-
+ 
 resultado=criterio.Todos(tabla,0.5,F)
 
 knitr::kable(resultado)</code></pre>
@@ -485,11 +506,12 @@ knitr::kable(resultado)</code></pre>
 </tbody>
 </table>
 <p>Como podemos ver, si el único criterio para elegir el plan del
-cumpleaños es minimizar el coste la mejor opción es la piscina de bolas,
-salvo que los padres opten por la estrategia “pesimista” en la cuál se
-plantean que el número máximo de amigos de su hijo acudirían al
-cumpleaños y en cuyo caso la opción más rentable sería el castillo
-hinchable.</p>
+cumpleaños es minimizar el coste la <strong>mejor opción</strong> es la
+<strong>piscina de bolas</strong>, salvo que los padres opten por la
+estrategia <strong>“pesimista”</strong> en la cuál se plantean que el
+número máximo de amigos de su hijo acudirían al cumpleaños y en cuyo
+caso la opción más rentable sería el <strong>castillo
+hinchable</strong>.</p>
 </div>
 
 
