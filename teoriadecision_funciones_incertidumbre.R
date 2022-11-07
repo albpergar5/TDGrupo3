@@ -16,7 +16,7 @@ crea.tablaX = function(vector_matporfilas,numalternativas=3,numestados=4) {
   return(X);
   # valor de salida: matriz con los coeficientes introducidos y los nombres correspondientes
 }
-
+ 
 # Introducimos los datos en R en forma de matriz:
 #   ```{r}
 # X = matrix(c(5,4,6,2,3,1,-1,8,7,5,2,0),nrow=4,ncol=3,byrow=TRUE)
