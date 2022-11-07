@@ -361,23 +361,24 @@ display: none;
 <p><strong>Enunciado</strong> José quiere hacer un concierto al aire
 libre el sábado pero si llueve no iría mucha gente y no tendría tantas
 ganancias, quiere cobrar la entrada a 15 euros, es por eso que considera
-las siguientes opciones: hacer el concierto en un teatro donde si no
-llueve iría un aproximado de 2,800 personas y si llueve 3,600, o si
-hacer el concierto en aire libre y si llueve irían aproximadamente 800
-personas pero si no llueve 5,200. Que le recomendarías a José si quiere
-maximizar sus ganancias.</p>
+las siguientes opciones: hacer el concierto en un teatro, el cual le
+costaría 5,000 rentarlo, donde si no llueve iría un aproximado de 2,800
+personas y si llueve 3,600, o si hacer el concierto en aire libre, donde
+no tendría que pagar renta pero si llueve irían aproximadamente 800
+personas, mientras que si no llueve 5,200. Que le recomendarías a José
+si quiere maximizar sus ganancias.</p>
 <p><strong>Esquema</strong> El problema se basa en un modelo favorable
 (beneficios)</p>
 <p>Estados de la naturaleza: - llueve - no llueve</p>
 <p>Alternativas: - Teatro - Aire libre</p>
 <p><strong>Resolución</strong></p>
 <p>Hacemos las matrices de beneficios</p>
-<pre class="r"><code>(m11=3600*15)</code></pre>
-<pre><code>## [1] 54000</code></pre>
+<pre class="r"><code>(m11=3600*15-5000)</code></pre>
+<pre><code>## [1] 49000</code></pre>
 <pre class="r"><code>(m12=800*15)</code></pre>
 <pre><code>## [1] 12000</code></pre>
-<pre class="r"><code>(m21=2800*15)</code></pre>
-<pre><code>## [1] 42000</code></pre>
+<pre class="r"><code>(m21=2800*15-5000)</code></pre>
+<pre><code>## [1] 37000</code></pre>
 <pre class="r"><code>(m22=5200*15)</code></pre>
 <pre><code>## [1] 78000</code></pre>
 <pre class="r"><code>tabla = crea.tablaX(c(m11,m21,
@@ -416,15 +417,15 @@ knitr::kable(resultado)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">d1</td>
-<td align="left">54000</td>
-<td align="left">42000</td>
-<td align="left">42000</td>
-<td align="left">54000</td>
-<td align="left">48000</td>
-<td align="left">36000</td>
-<td align="left">48000</td>
-<td align="left">36000</td>
-<td align="left">5</td>
+<td align="left">49000</td>
+<td align="left">37000</td>
+<td align="left">37000</td>
+<td align="left">49000</td>
+<td align="left">43000</td>
+<td align="left">41000</td>
+<td align="left">43000</td>
+<td align="left">41000</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">d2</td>
@@ -433,10 +434,10 @@ knitr::kable(resultado)</code></pre>
 <td align="left">12000</td>
 <td align="left">78000</td>
 <td align="left">45000</td>
-<td align="left">42000</td>
+<td align="left">37000</td>
 <td align="left">45000</td>
-<td align="left">42000</td>
-<td align="left">1</td>
+<td align="left">37000</td>
+<td align="left">5</td>
 </tr>
 <tr class="odd">
 <td align="left">iAlt.Opt (fav.)</td>
@@ -444,18 +445,19 @@ knitr::kable(resultado)</code></pre>
 <td align="left">–</td>
 <td align="left">d1</td>
 <td align="left">d2</td>
-<td align="left">d1</td>
-<td align="left">d1</td>
-<td align="left">d1</td>
-<td align="left">d1</td>
-<td align="left">d1</td>
+<td align="left">d2</td>
+<td align="left">d2</td>
+<td align="left">d2</td>
+<td align="left">d2</td>
+<td align="left">d2</td>
 </tr>
 </tbody>
 </table>
 <p>Si José solo toma en consideración sus ganancias, la mejor opción
-sería hacer el concierto en el teatro. Sin embargo, si José decide irse
-por la estrategia “optimista”, el cual se piensa que no llovería, la
-mejor opción sería hacer el concierto al Aire Libre.</p>
+sería hacer el concierto al aire libre. Sin embargo, si José decide irse
+por la estrategia de Wald “pesimista”, el cual se piensa el peor
+resultado, o sea que lloverá, la mejor opción sería hacer el concierto
+en el teatro.</p>
 
 
 

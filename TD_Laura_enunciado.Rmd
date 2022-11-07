@@ -1,8 +1,8 @@
 ---
 title: "TD_Laura_enunciado"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 date: "2022-11-01"
 ---
 
